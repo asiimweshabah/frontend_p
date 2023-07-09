@@ -52,6 +52,11 @@ body {
   justify-content: flex-start;
   align-items: center;
 }
+.navitems_2 {
+  list-style: none;
+  
+}
+
 .Link {
   text-decoration: none;
   color: #5f2781;
