@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import "./Sidenav.css";
+import axios from "axios";
 import { AiOutlineOrderedList } from "react-icons/ai";
 import { MdAccountCircle } from "react-icons/md";
 import {
@@ -14,20 +15,35 @@ import { Modal } from "react-bootstrap";
 import { IconContext } from "react-icons";
 import { BsFillPeopleFill } from "react-icons/bs";
 import SignUp from "../Components/SignUp";
+import Signin from "../Components/SignIn";
+
 const SideMenu = () => {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
   const [showModal, setShowModal] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Updated state
   const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
 
   useEffect(() => {
-    const checkLoggedIn = () => {
-      const token = localStorage.getItem("token");
-      setIsLoggedIn(!!token);
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `http://localhost:3006/users/allUsers`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        return response.data;
+      } catch (error) {
+        console.error(error);
+      }
     };
 
-    checkLoggedIn();
+    fetchUserData();
   }, []);
 
   const toggleModal = () => {
@@ -40,6 +56,19 @@ const SideMenu = () => {
     toggleModal();
   };
 
+  const handleOpenSignInModal = () => {
+    setShowSignInModal(true);
+  };
+
+  useEffect(() => {
+    const checkLoggedIn = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(token ? true : false);
+    };
+
+    checkLoggedIn();
+  }, []);
+
   return (
     <div className="col-auto col-md-3 col-xl-2 nav-container nav-top px-sm-2 px-0 ">
       <div className="d-flex justify-content-between align-items-center nav-container nav-top fixed-top py-3  px-4 container-fluid">
@@ -47,14 +76,13 @@ const SideMenu = () => {
           <div className="d-flex align-items-center">
             <div className="navbars d-flex align-items-center">
               <FaIcons.FaBars onClick={showSidebar} className="open" />
-              <h4 id="logo">Odyssey</h4>
             </div>
             <nav className={!sidebar ? "nav-menu" : "nav-menu active"}>
               <ul className="nav-menu-items" onClick={showSidebar}>
                 <div className="d-flex">
-                  <h4 className="mt-4" id="logo">
-                    Odyssey
-                  </h4>
+                  <h5 className="mt-3" id="logo">
+                    OdysseyBreakSystem
+                  </h5>
                   <p className="navbar-item">
                     <Link className="close">
                       <AiIcons.AiOutlineClose />
@@ -88,46 +116,52 @@ const SideMenu = () => {
                     </Link>
                   </li>
 
-                  <li className="navbar-item">
-                    <Link
-                      to="/admin_orderhistory"
-                      className="Link  d-flex align-items-center"
-                    >
-                      <RiFileHistoryFill
-                        className="ico mx-2"
-                        style={{ fontSize: "25px" }}
-                      />
-                      Order History
-                    </Link>
-                  </li>
+                  {localStorage.getItem("UserType") &&
+                    localStorage.getItem("UserType") !== "normal" && (
+                      <>
+                        <li className="navbar-item">
+                          <Link
+                            to="/admin_orderhistory"
+                            className="Link  d-flex align-items-center"
+                          >
+                            <RiFileHistoryFill
+                              className="ico mx-2"
+                              style={{ fontSize: "25px" }}
+                            />
+                            Order History
+                          </Link>
+                        </li>
 
-                  <li className="navbar-item">
-                    <Link
-                      to="/admin_users"
-                      className="Link  d-flex align-items-center"
-                    >
-                      <BsFillPeopleFill
-                        className="ico mx-2"
-                        style={{ fontSize: "25px" }}
-                      />
-                      Users
-                    </Link>
-                  </li>
-                  <li
-                    onClick={() => setShowSignUpModal(true)}
-                    className="navbar-item"
-                  >
-                    <Link
-                      onClick={showModal}
-                      className="Link  d-flex align-items-center"
-                    >
-                      <MdAccountCircle
-                        className="ico mx-2"
-                        style={{ fontSize: " 25px" }}
-                      />
-                      Add User
-                    </Link>
-                  </li>
+                        <li className="navbar-item">
+                          <Link
+                            to="/admin_users"
+                            className="Link  d-flex align-items-center"
+                          >
+                            <BsFillPeopleFill
+                              className="ico mx-2"
+                              style={{ fontSize: "25px" }}
+                            />
+                            Users
+                          </Link>
+                        </li>
+
+                        <li
+                          onClick={() => setShowSignUpModal(true)}
+                          className="navbar-item"
+                        >
+                          <Link
+                            onClick={showModal}
+                            className="Link  d-flex align-items-center"
+                          >
+                            <MdAccountCircle
+                              className="ico mx-2"
+                              style={{ fontSize: " 25px" }}
+                            />
+                            Add User
+                          </Link>
+                        </li>
+                      </>
+                    )}
 
                   <li className="navbar-item">
                     {isLoggedIn ? (
@@ -143,7 +177,7 @@ const SideMenu = () => {
                       </Link>
                     ) : (
                       <Link
-                        to="/login"
+                        onClick={handleOpenSignInModal}
                         className="Link  d-flex align-items-center"
                       >
                         <RiLoginCircleFill
@@ -162,6 +196,7 @@ const SideMenu = () => {
         <div className="area-3">
           <div className="d-flex align-items-center">
             <div className="align-items-center d-flex">
+              {localStorage.getItem("Email")}
               <Link id="link" className="link mx-1">
                 <MdAccountCircle
                   className="ico mx-2"
@@ -189,12 +224,26 @@ const SideMenu = () => {
               </button>
             </Modal.Footer>
           </Modal>
-          <div></div>
+          <div>
+            {showSignInModal && (
+              <Modal
+                centered
+                show={showSignInModal}
+                onHide={() => setShowSignInModal(false)}
+              >
+                <Modal.Header closeButton>
+                  {/* <Modal.Title>Login</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body>
+                  <Signin />
+                </Modal.Body>
+              </Modal>
+            )}
+          </div>
         </div>
         {showSignUpModal && (
           <Modal
             centered
-            // style={{ height: "50%" }}
             show={showSignUpModal}
             onHide={() => setShowSignUpModal(false)}
           >

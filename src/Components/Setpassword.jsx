@@ -33,7 +33,7 @@ const Setpassword = () => {
       })
       .then((response) => {
         setMessage(response.data.message);
-        navigate("/login");
+        navigate("/", { state: { showSignInModal: false } });
       })
       .catch((error) => {
         setMessage(error.response.data.error);
