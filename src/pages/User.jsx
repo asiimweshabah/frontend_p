@@ -13,7 +13,7 @@ export default function User() {
   async function fetchData() {
     try {
       const response = await axios.get(
-        `https://zany-gray-basket-clam-vest.cyclic.app/products`
+        `https://odysseybreaksystem.cyclic.app/products`
       );
       setOrders(response.data);
     } catch (error) {
@@ -47,7 +47,7 @@ export default function User() {
         quantities: selectedQuantities,
       };
       await axios.post(
-        `https://zany-gray-basket-clam-vest.cyclic.app/products/placeOrder`,
+        `https://odysseybreaksystem.cyclic.app/products/placeOrder`,
         orderData
       );
       setSelectedProducts([]);

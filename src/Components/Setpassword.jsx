@@ -27,13 +27,10 @@ const Setpassword = () => {
 
     console.log(searchParams);
     axios
-      .post(
-        `https://zany-gray-basket-clam-vest.cyclic.app/users/setpassword`,
-        {
-          email: `${searchParams.get("email")}`,
-          password,
-        }
-      )
+      .post(`https://odysseybreaksystem.cyclic.app/users/setpassword`, {
+        email: `${searchParams.get("email")}`,
+        password,
+      })
       .then((response) => {
         setMessage(response.data.message);
         navigate("/", { state: { showSignInModal: false } });

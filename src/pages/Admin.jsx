@@ -31,7 +31,7 @@ function Admin() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://zany-gray-basket-clam-vest.cyclic.app/users/allUsers`,
+        `https://odysseybreaksystem.cyclic.app/users/allUsers`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -61,7 +61,6 @@ function Admin() {
         (user) => user.UserType === selectedUserType
       );
     }
-
     setFilteredUsers(filteredUsers);
   }
 
@@ -71,7 +70,7 @@ function Admin() {
       const result = window.confirm("Deleting user?");
       if (result) {
         await axios.delete(
-          `https://zany-gray-basket-clam-vest.cyclic.app/users/deleteUser/${userId}`,
+          `https://odysseybreaksystem.cyclic.app/users/deleteUser/${userId}`,
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -92,7 +91,7 @@ function Admin() {
 
       if (userIsActive) {
         await axios.put(
-          `https://zany-gray-basket-clam-vest.cyclic.app/users/deactivate/${userId}`,
+          `https://odysseybreaksystem.cyclic.app/users/deactivate/${userId}`,
           {},
           {
             headers: {
@@ -102,7 +101,7 @@ function Admin() {
         );
       } else {
         await axios.put(
-          `https://zany-gray-basket-clam-vest.cyclic.app/users/activate/${userId}`,
+          `https://odysseybreaksystem.cyclic.app/users/activate/${userId}`,
           {},
           {
             headers: {

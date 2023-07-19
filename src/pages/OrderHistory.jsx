@@ -16,7 +16,7 @@ export default function Orders() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://zany-gray-basket-clam-vest.cyclic.app/orders`,
+        `https://odysseybreaksystem.cyclic.app/orders`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -35,7 +35,7 @@ export default function Orders() {
       const token = localStorage.getItem("token");
       if (result) {
         await axios.delete(
-          `https://zany-gray-basket-clam-vest.cyclic.app/orders/deleteOrders`,
+          `https://odysseybreaksystem.cyclic.app/orders/deleteOrders`,
           {
             headers: {
               Authorization: "Bearer " + token,

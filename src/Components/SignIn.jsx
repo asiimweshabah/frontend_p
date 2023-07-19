@@ -31,7 +31,7 @@ export default function Signin() {
       setLoginStatus("");
       try {
         const response = await axios.post(
-          `https://zany-gray-basket-clam-vest.cyclic.app/users/login`,
+          `https://odysseybreaksystem.cyclic.app/users/login`,
           {
             email: email,
             password: password,
@@ -61,7 +61,7 @@ export default function Signin() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3006/users/register`,
+        `https://odysseybreaksystem.cyclic.app/users/register`,
         {
           email: email,
           password: password,

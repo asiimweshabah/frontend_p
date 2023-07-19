@@ -13,7 +13,7 @@ export default function Orders() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://zany-gray-basket-clam-vest.cyclic.app/orders/myOrders/${userId}`,
+        `https://odysseybreaksystem.cyclic.app/orders/myOrders/${userId}`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -34,7 +34,7 @@ export default function Orders() {
   //     try {
   //       const token = localStorage.getItem("token");
   //       await axios.delete(
-  //         `https://zany-gray-basket-clam-vest.cyclic.app/orders/deleteMyOrders/${orderId}`,
+  //         `https://odysseybreaksystem.cyclic.app/orders/deleteMyOrders/${orderId}`,
   //         {
   //           headers: {
   //             Authorization: "Bearer " + token,
@@ -60,7 +60,7 @@ export default function Orders() {
       try {
         const token = localStorage.getItem("token");
         await axios.delete(
-          `https://zany-gray-basket-clam-vest.cyclic.app/orders/deleteMyOrders/${orderId}`,
+          `https://odysseybreaksystem.cyclic.app/orders/deleteMyOrders/${orderId}`,
           {
             headers: {
               Authorization: "Bearer " + token,

@@ -22,7 +22,7 @@ export default function Products() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://zany-gray-basket-clam-vest.cyclic.app/products`,
+        `https://odysseybreaksystem.cyclic.app/products`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -32,7 +32,7 @@ export default function Products() {
       setOrders(response.data);
 
       const userResponse = await axios.get(
-        `https://zany-gray-basket-clam-vest.cyclic.app/users/allUsers`,
+        `https://odysseybreaksystem.cyclic.app/users/allUsers`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -55,7 +55,7 @@ export default function Products() {
       );
       if (confirmed) {
         await axios.delete(
-          `https://zany-gray-basket-clam-vest.cyclic.app/products/deleteProduct/${id}`,
+          `https://odysseybreaksystem.cyclic.app/products/deleteProduct/${id}`,
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -137,7 +137,7 @@ export default function Products() {
       });
 
       await axios.post(
-        "https://zany-gray-basket-clam-vest.cyclic.app/orders/placeOrder",
+        "https://odysseybreaksystem.cyclic.app/orders/placeOrder",
         { selectedProductIds, selectedProductData },
         {
           headers: {
@@ -148,7 +148,7 @@ export default function Products() {
 
       // Update the products table with selected products and their quantities and amounts
       await axios.post(
-        "https://zany-gray-basket-clam-vest.cyclic.app/products/updateProducts",
+        "https://odysseybreaksystem.cyclic.app/products/updateProducts",
         { selectedProductData },
         {
           headers: {
@@ -159,6 +159,7 @@ export default function Products() {
 
       setIsOrderPlaced(true);
       setSelectedProducts([]);
+      setOrders([]);
       window.alert("Order placed successfully!");
     } catch (error) {
       console.error("Error placing order:", error);

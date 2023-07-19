@@ -49,7 +49,7 @@ export default function SignUp() {
       // Send verification code to the user's email
       axios
         .post(
-          `  https://zany-gray-basket-clam-vest.cyclic.app/users/register`,
+          `  http://localhost:3006/users/register`,
           {
             username: username,
             email: email,

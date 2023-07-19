@@ -36,7 +36,7 @@ export default function AddProduct({ onClose }) {
       event.preventDefault();
       const { product, price, quantity, amount } = formData;
       await axios.post(
-        "https://zany-gray-basket-clam-vest.cyclic.app/products/createProduct",
+        "https://odysseybreaksystem.cyclic.app/products/createProduct",
         {
           product,
           price,
