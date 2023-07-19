@@ -30,11 +30,14 @@ function Admin() {
   async function fetchUsers() {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://localhost:3006/users/allUsers`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      const response = await axios.get(
+        `https://zany-gray-basket-clam-vest.cyclic.app/users/allUsers`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
 
       const allUsers = response.data;
       setUsers(allUsers);
@@ -67,11 +70,14 @@ function Admin() {
       const token = localStorage.getItem("token");
       const result = window.confirm("Deleting user?");
       if (result) {
-        await axios.delete(`http://localhost:3006/users/deleteUser/${userId}`, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        await axios.delete(
+          `https://zany-gray-basket-clam-vest.cyclic.app/users/deleteUser/${userId}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
         await fetchUsers();
       }
     } catch (error) {
@@ -86,7 +92,7 @@ function Admin() {
 
       if (userIsActive) {
         await axios.put(
-          `http://localhost:3006/users/deactivate/${userId}`,
+          `https://zany-gray-basket-clam-vest.cyclic.app/users/deactivate/${userId}`,
           {},
           {
             headers: {
@@ -96,7 +102,7 @@ function Admin() {
         );
       } else {
         await axios.put(
-          `http://localhost:3006/users/activate/${userId}`,
+          `https://zany-gray-basket-clam-vest.cyclic.app/users/activate/${userId}`,
           {},
           {
             headers: {

@@ -30,10 +30,13 @@ export default function Signin() {
       setIsSubmitting(true);
       setLoginStatus("");
       try {
-        const response = await axios.post(`http://localhost:3006/users/login`, {
-          email: email,
-          password: password,
-        });
+        const response = await axios.post(
+          `https://zany-gray-basket-clam-vest.cyclic.app/users/login`,
+          {
+            email: email,
+            password: password,
+          }
+        );
 
         if (response.data.message === "User does not exist") {
           setLoginStatus("User does not exist");

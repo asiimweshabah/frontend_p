@@ -30,7 +30,7 @@ const SideMenu = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:3006/users/allUsers`,
+          `https://zany-gray-basket-clam-vest.cyclic.app/users/allUsers`,
           {
             headers: {
               Authorization: "Bearer " + token,
