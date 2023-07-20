@@ -13,7 +13,7 @@ export default function Orders() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://odysseybreaksystem.cyclic.app/orders/myOrders/${userId}`,
+        `http://localhost:3006/orders/myOrders/${userId}`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -34,7 +34,7 @@ export default function Orders() {
   //     try {
   //       const token = localStorage.getItem("token");
   //       await axios.delete(
-  //         `https://odysseybreaksystem.cyclic.app/orders/deleteMyOrders/${orderId}`,
+  //         `http://localhost:3006/orders/deleteMyOrders/${orderId}`,
   //         {
   //           headers: {
   //             Authorization: "Bearer " + token,
@@ -60,7 +60,7 @@ export default function Orders() {
       try {
         const token = localStorage.getItem("token");
         await axios.delete(
-          `https://odysseybreaksystem.cyclic.app/orders/deleteMyOrders/${orderId}`,
+          `http://localhost:3006/orders/deleteMyOrders/${orderId}`,
           {
             headers: {
               Authorization: "Bearer " + token,
