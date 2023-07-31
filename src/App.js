@@ -10,7 +10,8 @@ import Products from "./pages/Products";
 import OrderHistory from "./pages/OrderHistory";
 import Recent from "./pages/Recent";
 import Navbar from "./Menu/Navbar";
-
+import SignInOutlets from "./SignInOutlets";
+import SignIn from "./Components/SignIn";
 function App() {
   return (
     <div className="App">
@@ -24,6 +25,9 @@ function App() {
         <Route path="/recent" element={<Recent />} />
         <Route path="/admin_orderhistory" element={<OrderHistory />} />
         <Route path="/setpassword" element={<Setpassword />} />
+        <Route path="/login" exact element={<SignInOutlets />}>
+          <Route path="/login" element={<SignIn />} />
+        </Route>
       </Routes>
     </div>
   );

@@ -23,7 +23,7 @@ const SideMenu = () => {
   const [showModal, setShowModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Updated state
   const [showSignUpModal, setShowSignUpModal] = useState(false);
-  const [showSignInModal, setShowSignInModal] = useState(false);
+  // const [showSignInModal, setShowSignInModal] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -54,10 +54,6 @@ const SideMenu = () => {
     localStorage.clear();
     setIsLoggedIn(false);
     toggleModal();
-  };
-
-  const handleOpenSignInModal = () => {
-    setShowSignInModal(true);
   };
 
   useEffect(() => {
@@ -176,10 +172,7 @@ const SideMenu = () => {
                         Logout
                       </Link>
                     ) : (
-                      <Link
-                        onClick={handleOpenSignInModal}
-                        className="Link  d-flex align-items-center"
-                      >
+                      <Link className="Link  d-flex align-items-center">
                         <RiLoginCircleFill
                           className="ico mx-2"
                           style={{ fontSize: " 25px" }}
@@ -224,22 +217,7 @@ const SideMenu = () => {
               </button>
             </Modal.Footer>
           </Modal>
-          <div>
-            {showSignInModal && (
-              <Modal
-                centered
-                show={showSignInModal}
-                onHide={() => setShowSignInModal(false)}
-              >
-                <Modal.Header closeButton>
-                  {/* <Modal.Title>Login</Modal.Title> */}
-                </Modal.Header>
-                <Modal.Body>
-                  <Signin />
-                </Modal.Body>
-              </Modal>
-            )}
-          </div>
+          <div>{<Signin />}</div>
         </div>
         {showSignUpModal && (
           <Modal
