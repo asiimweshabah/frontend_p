@@ -1,12 +1,17 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 // import SignIn from "./Components/SignIn";
-const SignInOutlets = () => {
+import Navbar from "./Menu/Navbar";
+
+const Outlets = () => {
   return (
     <div>
-      <Outlet />
+      <React.Fragment>
+        <Navbar />/ {/* <SignIn /> */}
+        <Outlet />
+      </React.Fragment>
     </div>
   );
 };
 
-export default SignInOutlets;
+export default Outlets;

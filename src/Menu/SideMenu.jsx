@@ -6,11 +6,7 @@ import "./Sidenav.css";
 import axios from "axios";
 import { AiOutlineOrderedList } from "react-icons/ai";
 import { MdAccountCircle } from "react-icons/md";
-import {
-  RiFileHistoryFill,
-  RiLoginCircleFill,
-  RiLogoutCircleFill,
-} from "react-icons/ri";
+import { RiFileHistoryFill, RiLogoutCircleFill } from "react-icons/ri";
 import { Modal } from "react-bootstrap";
 import { IconContext } from "react-icons";
 import { BsFillPeopleFill } from "react-icons/bs";
@@ -21,16 +17,16 @@ const SideMenu = () => {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
   const [showModal, setShowModal] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Updated state
+
   const [showSignUpModal, setShowSignUpModal] = useState(false);
-  // const [showSignInModal, setShowSignInModal] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `https://odysseybreaksystem.cyclic.app/users/allUsers`,
+          `http://localhost:3006/users/allUsers`,
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -52,14 +48,14 @@ const SideMenu = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    setIsLoggedIn(false);
+
     toggleModal();
   };
 
   useEffect(() => {
     const checkLoggedIn = () => {
-      const token = localStorage.getItem("token");
-      setIsLoggedIn(token ? true : false);
+      // const token = localStorage.getItem("token");
+      // setIsLoggedIn(token ? true : false);
     };
 
     checkLoggedIn();
@@ -160,26 +156,17 @@ const SideMenu = () => {
                     )}
 
                   <li className="navbar-item">
-                    {isLoggedIn ? (
-                      <Link
-                        onClick={toggleModal}
-                        className="Link  d-flex align-items-center"
-                      >
-                        <RiLogoutCircleFill
-                          className="ico mx-2"
-                          style={{ fontSize: " 25px" }}
-                        />
-                        Logout
-                      </Link>
-                    ) : (
-                      <Link className="Link  d-flex align-items-center">
-                        <RiLoginCircleFill
-                          className="ico mx-2"
-                          style={{ fontSize: " 25px" }}
-                        />
-                        Login
-                      </Link>
-                    )}
+                    {/* {isLoggedIn ? ( */}
+                    <Link
+                      onClick={toggleModal}
+                      className="Link  d-flex align-items-center"
+                    >
+                      <RiLogoutCircleFill
+                        className="ico mx-2"
+                        style={{ fontSize: " 25px" }}
+                      />
+                      Logout
+                    </Link>
                   </li>
                 </div>
               </ul>
@@ -217,7 +204,22 @@ const SideMenu = () => {
               </button>
             </Modal.Footer>
           </Modal>
-          <div>{<Signin />}</div>
+          <div>
+            {showSignInModal && (
+              <Modal
+                centered
+                show={showSignInModal}
+                onHide={() => setShowSignInModal(false)}
+              >
+                <Modal.Header closeButton>
+                  {/* <Modal.Title>Login</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body>
+                  <Signin />
+                </Modal.Body>
+              </Modal>
+            )}
+          </div>
         </div>
         {showSignUpModal && (
           <Modal
