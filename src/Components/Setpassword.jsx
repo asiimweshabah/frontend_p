@@ -43,7 +43,7 @@ const Setpassword = () => {
   return (
     <div>
       <div className="form-container form_bg">
-        <form id="form" onSubmit={handleSubmit} className=" w-50">
+        <form id="form" onSubmit={handleSubmit} className="w-50">
           <div>
             <label htmlFor="password">Enter Password:</label>
             <input

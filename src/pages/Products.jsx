@@ -147,7 +147,6 @@ export default function Products() {
 
   const placeOrder = async () => {
     const token = localStorage.getItem("token");
-    console.log(selectedProducts);
 
     try {
       const selectedProductIds = selectedProducts.map(
@@ -175,7 +174,6 @@ export default function Products() {
         }
       );
 
-      // Update the products table with selected products and their quantities and amounts
       await axios.post(
         "http://localhost:3006/products/updateProducts",
         { selectedProductData },
@@ -186,16 +184,16 @@ export default function Products() {
         }
       );
 
-      setIsOrderPlaced(true);
-      setSelectedProducts([]);
-      setOrders([]);
       toast.success("Order placed successfully!", {
         position: "top-center",
         autoClose: 2000,
       });
+
+      setIsOrderPlaced(true); // You can set this to true here or wherever it's appropriate in your code
     } catch (error) {
-      console.error("Error placing order:", error);
-      toast.error("Failed to place order. Please try again.", {
+      console.error(error);
+
+      toast.error("Failed to place order. User can place order once a day.", {
         position: "top-center",
         autoClose: 2000,
       });

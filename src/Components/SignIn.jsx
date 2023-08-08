@@ -84,116 +84,118 @@ export default function LogIn() {
   };
 
   return (
-    <div className="form-container form_bg">
-      <form id="form" method="POST" action="/users/login" className="w-50">
-        <div>
-          <label htmlFor="email">
-            Email
-            <span style={{ fontSize: "20px" }} className="text-danger mx-1">
-              *
-            </span>
-          </label>
-          <input
-            required
-            placeholder="Email"
-            className="form-control w-100"
-            type="text"
-            name={"email"}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="password">
-            Password
-            <span style={{ fontSize: "20px" }} className="text-danger mx-1">
-              *
-            </span>
-          </label>
-          <input
-            required
-            placeholder="Password"
-            className="form-control w-100"
-            type="password"
-            name={"password"}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-
-        <input
-          required
-          onClick={login}
-          type="submit"
-          value="SignIn"
-          className="submit btn w-100 btn-danger mt-4 text-center"
-          disabled={isSubmitting}
-        />
-        <h1
-          style={{
-            fontSize: "15px",
-            marginTop: "20px",
-            border: "red",
-          }}
-        >
-          {loginStatus}
-        </h1>
-        <span className="text-primary justify-content-end">
-          <Link style={{ textDecoration: "none" }} to="/setpassword">
-            Forgot password?
-          </Link>
-        </span>
-      </form>
-      {/* User registration form */}
-      {loginStatus === "User does not exist. Would you like to register?" && (
-        <form
-          onSubmit={handleUserRegistration}
-          className="form_container"
-          style={{ marginTop: "20px" }}
-        >
-          <h2>Create Account</h2>
+    <div className="form_bg">
+      <div className="form-container">
+        <form id="form" method="POST" action="/users/login" className="w-50">
           <div>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">
+              Email
+              <span style={{ fontSize: "20px" }} className="text-danger mx-1">
+                *
+              </span>
+            </label>
             <input
               required
               placeholder="Email"
               className="form-control w-100"
               type="text"
-              name="email"
+              name={"email"}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="my-3">
-            <label htmlFor="userType">User Type:</label>
-            <select
-              className="form-control w-100"
-              name="userType"
-              value={userType}
-              onChange={(e) => setUserType(e.target.value)}
-            >
-              <option value="normal">Normal User</option>
-              <option value="admin">Admin</option>
-              <option value="superadmin">Super Admin</option>
-            </select>
-          </div>
+
           <div>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">
+              Password
+              <span style={{ fontSize: "20px" }} className="text-danger mx-1">
+                *
+              </span>
+            </label>
             <input
               required
               placeholder="Password"
               className="form-control w-100"
               type="password"
-              name="password"
+              name={"password"}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+
           <input
             required
+            onClick={login}
             type="submit"
-            value="Create Account"
+            value="SignIn"
             className="submit btn w-100 btn-danger mt-4 text-center"
+            disabled={isSubmitting}
           />
+          <h1
+            style={{
+              fontSize: "15px",
+              marginTop: "20px",
+              border: "red",
+            }}
+          >
+            {loginStatus}
+          </h1>
+          <span className="text-primary justify-content-end">
+            <Link style={{ textDecoration: "none" }} to="/setpassword">
+              Forgot password?
+            </Link>
+          </span>
         </form>
-      )}
+        {/* User registration form */}
+        {loginStatus === "User does not exist. Would you like to register?" && (
+          <form
+            onSubmit={handleUserRegistration}
+            className="form_container"
+            style={{ marginTop: "20px" }}
+          >
+            <h2>Create Account</h2>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                required
+                placeholder="Email"
+                className="form-control w-100"
+                type="text"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="my-3">
+              <label htmlFor="userType">User Type:</label>
+              <select
+                className="form-control w-100"
+                name="userType"
+                value={userType}
+                onChange={(e) => setUserType(e.target.value)}
+              >
+                <option value="normal">Normal User</option>
+                <option value="admin">Admin</option>
+                <option value="superadmin">Super Admin</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input
+                required
+                placeholder="Password"
+                className="form-control w-100"
+                type="password"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <input
+              required
+              type="submit"
+              value="Create Account"
+              className="submit btn w-100 btn-danger mt-4 text-center"
+            />
+          </form>
+        )}
+      </div>
     </div>
   );
 }

@@ -11,10 +11,10 @@ export default function Orders() {
   useEffect((users_Id) => {
     getOrdersByUser(users_Id);
   }, []);
+
   const deleteUserOrder = (Id, total_amount) => {
-    setShowConfirmationModal(true); // Show the confirmation modal
-    // Save the Id and total_amount of the order to be deleted in a state variable
-    // so that we can access it inside the confirmation modal
+    setShowConfirmationModal(true);
+
     setOrderToDelete({ Id, total_amount });
   };
 
@@ -36,7 +36,7 @@ export default function Orders() {
   }
 
   const handleDeleteConfirmed = async (Id, total_amount) => {
-    setShowConfirmationModal(false); // Hide the confirmation modal
+    setShowConfirmationModal(false);
     try {
       const token = localStorage.getItem("token");
 

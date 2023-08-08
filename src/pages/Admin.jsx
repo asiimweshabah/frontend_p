@@ -211,7 +211,7 @@ function Admin() {
                     </td>
                     <td className="w-100 d-flex justify-content-evenly">
                       <button
-                        className="bg_btn btn-sm btn btn-success"
+                        className="btn-sm btn btn-danger"
                         onClick={() => deleteUser(user.users_Id)}
                       >
                         Delete User
