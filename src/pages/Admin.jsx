@@ -49,7 +49,15 @@ function Admin() {
       });
 
       const allUsers = response.data;
+
+      // Create a userActivationStatus object with default activation status for each user
+      const defaultActivationStatus = {};
+      allUsers.forEach((user) => {
+        defaultActivationStatus[user.users_Id] = true; // Set default status to active
+      });
+
       setUsers(allUsers);
+      setUserActivationStatus(defaultActivationStatus); // Set the default activation status
       filterUsers(allUsers);
     } catch (error) {
       console.error(error);
@@ -211,6 +219,7 @@ function Admin() {
                     </td>
                     <td className="w-100 d-flex justify-content-evenly">
                       <button
+                        disabled={user.UserType !== "normal"}
                         className="btn-sm btn btn-danger"
                         onClick={() => deleteUser(user.users_Id)}
                       >
@@ -220,23 +229,25 @@ function Admin() {
                         {userActivationStatus[user.users_Id] ? (
                           <div>
                             <button
-                              onClick={() =>
-                                toggleUserActivation(user.users_Id)
-                              }
-                              className="btn-width btn bg_btn btn-sm text-white w-100"
-                            >
-                              Activate User
-                            </button>
-                          </div>
-                        ) : (
-                          <div>
-                            <button
+                              disabled={user.UserType !== "normal"}
                               onClick={() =>
                                 toggleUserActivation(user.users_Id)
                               }
                               className="btn btn-sm btn-danger w-100"
                             >
                               Deactivate User
+                            </button>
+                          </div>
+                        ) : (
+                          <div>
+                            <button
+                              disabled={user.UserType !== "normal"}
+                              onClick={() =>
+                                toggleUserActivation(user.users_Id)
+                              }
+                              className="btn-width btn bg_btn btn-sm text-white w-100"
+                            >
+                              Activate User
                             </button>
                           </div>
                         )}

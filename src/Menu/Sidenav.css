@@ -73,11 +73,14 @@ body {
   margin-top: 3px;
 }
 
+.Modal_Title {
+  background-color: #d8b3ef;
+}
 .form-title-bg {
   background-color: #e8e6ff;
 }
-/* li:hover {
-  background-color: #c590e6;
-  width: 100%;
-  border-radius: 10px;
-} */
+.profile_Logout {
+  margin-top: -65px;
+  z-index: 10;
+  margin-bottom: 40px;
+}

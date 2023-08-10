@@ -4,15 +4,16 @@ import { Modal } from "react-bootstrap";
 import SignUp from "../Components/SignUp";
 import { CiMenuKebab } from "react-icons/ci";
 import { toast } from "react-toastify";
-
+import { MdAccountCircle } from "react-icons/md";
+import ProfileModal from "./ProfileModal";
 export const Navbar = () => {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
   const [userType, setUserType] = useState(localStorage.getItem("UserType"));
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const [showProfileModal, setShowProfileModal] = useState(false);
   useEffect(() => {
-    // Check for changes in UserType in localStorage and update the state accordingly
     setUserType(localStorage.getItem("UserType"));
   }, []);
 
@@ -102,11 +103,25 @@ export const Navbar = () => {
                 </li>
               </>
             )}
-            <li className="nav-item">
-              <Link onClick={toggleModal} className="nav-link Link">
-                <button className="btn btn-danger">Logout</button>
-              </Link>
-            </li>
+
+            <div className="align-items-center d-flex">
+              <span
+                id="profile-link"
+                className="link mx-1"
+                onClick={() => setShowProfileModal(true)}
+              >
+                <MdAccountCircle
+                  className="ico mx-2"
+                  style={{ fontSize: "25px" }}
+                />
+              </span>
+            </div>
+            <ProfileModal
+              show={showProfileModal}
+              onHide={() => setShowProfileModal(false)}
+              userEmail={localStorage.getItem("Email")}
+              handleLogout={handleLogout}
+            />
           </ul>
         </div>
         <Modal show={showModal} onHide={toggleModal} centered>

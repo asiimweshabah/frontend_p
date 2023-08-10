@@ -189,11 +189,10 @@ export default function Products() {
         autoClose: 2000,
       });
 
-      setIsOrderPlaced(true); // You can set this to true here or wherever it's appropriate in your code
+      setIsOrderPlaced(true);
     } catch (error) {
-      console.error(error);
-
-      toast.error("Failed to place order. User can place order once a day.", {
+      // console.error(error);
+      toast.error("Failed to place order. Please try again.", {
         position: "top-center",
         autoClose: 2000,
       });
